@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.board-row::after {
+  @apply clear-both content-[''] block;
+}

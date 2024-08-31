@@ -1,0 +1,27 @@
+import React from 'react';
+
+type SquarePropsType = {
+  shade: string;
+  style: React.CSSProperties | undefined;
+  key: number;
+  onClick: () => void;
+};
+
+export const Square: React.FC<SquarePropsType> = ({
+  shade,
+  style,
+  key,
+  onClick,
+}) => {
+  return (
+    <button
+      className={
+        'bg-gray-200 border border-transparent float-left text-lg font-bold leading-8  mr-px mt-px p-0 text-center w-12 h-12 relative' +
+        shade
+      }
+      onClick={onClick}
+      style={style}
+      key={key}
+    ></button>
+  );
+};
