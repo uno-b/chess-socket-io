@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chess Frontend
 
-## Getting Started
+This project is the frontend for a chess application, designed to work with the backend developed as a coding assignment for CodeMe by Unumandakh Bayandelger.
 
-First, run the development server:
+## Folder Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **src/**: Contains the main source code.
+- **app/**: Contains the app router and routing logic.
+- **components/**: Reusable UI components for the chess application.
+- **styles/**: Contains stylesheets and CSS modules.
+- **types/**: TypeScript type definitions used across the project.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**: React framework for server-side rendering and static site generation.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Socket.io Client**: Real-time communication with the backend.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Setup
 
-## Learn More
+1. **Clone the Repository**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/uno-b/codeme-assignment.git`
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Navigate to the Project Directory**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   cd codeme-assignment
+   ```
 
-## Deploy on Vercel
+3. **Install Dependencies**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+    npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Run the Project**
+
+   Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+## Deployment
+
+Frontend: https://codeme-assignment.vercel.app/
+
+(2 players required to play)
+
+Backend: Deployed on Google Run.
+
+## Contact
+
+For any questions or feedback, please reach out to unumandakh.b@gmail.com.
