@@ -31,8 +31,8 @@ const Board: React.FC<BoardProps> = ({ squares = [], onClick }) => {
     for (let j = 0; j < 8; j++) {
       const squareShade =
         (isEven(i) && isEven(j)) || (!isEven(i) && !isEven(j))
-          ? 'bg-gray-100'
-          : 'bg-gray-700';
+          ? 'bg-amber-700'
+          : 'bg-amber-200';
       squareRows.push(renderSquare(i * 8 + j, squareShade));
     }
     board.push(

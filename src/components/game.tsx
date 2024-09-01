@@ -8,6 +8,8 @@ import FallenSoldierBlock from './fallen-soldier-block';
 import { Piece } from '@/types/common';
 import { Square } from '@/types/common';
 
+import { CiSquareInfo } from 'react-icons/ci';
+
 type GamePropsType = {
   socket: Socket;
   gameId: string;
@@ -82,32 +84,52 @@ const Game = ({
 
   return (
     <div>
-      <div>
+      <div className='flex space-x-10'>
+        <Board squares={squares} onClick={(i) => handleClick(i)} />
         <div>
-          <Board squares={squares} onClick={(i) => handleClick(i)} />
-        </div>
-        <div className='mt-10'>
-          <h3>Turn</h3>
-          <div
-            className='w-8 h-8 border border-black mb-2'
-            style={{ backgroundColor: turn === 1 ? 'white' : 'black' }}
-          ></div>
-          <div className='mt-5 min-h-[50px]'>{status}</div>
-
-          <div className='mt-5 min-h-[50px]'>
-            <FallenSoldierBlock
-              whiteFallenSoldiers={whiteFallenSoldiers}
-              blackFallenSoldiers={blackFallenSoldiers}
-            />
+          <h1 className='mb-20'>
+            You're playing as{' '}
+            <span className='font-bold'>
+              {player === 1 ? 'white' : 'black'}
+            </span>
+          </h1>
+          <div className='flex flex-row space-x-4 justify-center items-center'>
+            <h3 className='font-bold text-xl  h-fit'>Turn</h3>
+            <div
+              className='w-4 h-4 border border-black rounded-full bg-green-300'
+              style={{ backgroundColor: turn === 1 ? 'white' : 'black' }}
+            ></div>
           </div>
         </div>
+      </div>
+
+      <div
+        className={`my-10 flex flex-row space-x-4 items-center ${
+          status ? '' : 'invisible'
+        }`}
+      >
+        <CiSquareInfo className='text-black' size={30} />
+        <p>{status}</p>
+      </div>
+
+      <div
+        className={`min-h-[50px] border mb-10 ${
+          whiteFallenSoldiers.length === 0 &&
+          blackFallenSoldiers.length === 0 &&
+          'invisible'
+        }`}
+      >
+        <FallenSoldierBlock
+          whiteFallenSoldiers={whiteFallenSoldiers}
+          blackFallenSoldiers={blackFallenSoldiers}
+        />
       </div>
 
       <a
         href='https://github.com/uno-b/codeme-assignment'
         target='_blank'
         rel='noopener noreferrer'
-        className='underline hover-text-gray-300'
+        className='underline hover-text-gray-300 block mx-auto w-fit'
       >
         Source Code
       </a>

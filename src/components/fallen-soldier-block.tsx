@@ -22,7 +22,7 @@ export default function FallenSoldierBlock({
   };
 
   return (
-    <div>
+    <div className='flex flex-col space-y-2 p-2'>
       <div className={BoardRowStyle}>
         {whiteFallenSoldiers.map((ws, index) => renderSquare(ws, index))}
       </div>

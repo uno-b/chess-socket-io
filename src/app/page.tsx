@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-slate-600 to-slate-800 shadow-lg'>
       {gameStart ? (
-        <div className='p-10 border rounded text-white'>
+        <div className='p-10 border rounded text-black bg-white'>
           <Game
             gameId={gameId}
             socket={socket}
