@@ -82,7 +82,7 @@ export default function Home() {
   };
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-slate-600 to-slate-800 shadow-lg'>
+    <main className='flex min-h-screen flex-col items-center p-24 bg-gradient-to-r from-slate-600 to-slate-800 shadow-lg'>
       {gameStart ? (
         <div className='p-10 border rounded text-black bg-white'>
           <Game
@@ -105,20 +105,18 @@ export default function Home() {
           </div>
           <button
             onClick={handleClick}
-            className='mx-auto bg-black text-white px-8 py-2 rounded w-fit block mt-10 transition-colors hover:text-gray-200 shadow-md'
+            className='mx-auto bg-black text-white px-8 py-2 rounded w-fit block mt-10 transition-colors hover:bg-gray-700 shadow-md'
           >
             Join
           </button>
 
-          {note && (
-            <>
-              <div className='w-full border-b-2 my-10' />
-              <div className='flex flex-row space-x-4 items-center justify-center text-sm'>
-                <FaMessage size={30} />
-                <p className='text-gray-500'>{note}</p>
-              </div>
-            </>
-          )}
+          <div className={`w-full ${note ? '' : 'invisible'}`}>
+            <div className='w-full border-b-2 mt-10 mb-4' />
+            <div className='flex flex-row space-x-4 items-center justify-center text-sm text-gray-500'>
+              <FaMessage size={20} />
+              <p className=''>{note}</p>
+            </div>
+          </div>
         </div>
       )}
     </main>

@@ -88,7 +88,7 @@ const Game = ({
         <Board squares={squares} onClick={(i) => handleClick(i)} />
         <div>
           <h1 className='mb-20'>
-            You're playing as{' '}
+            You&apos;re playing as{' '}
             <span className='font-bold'>
               {player === 1 ? 'white' : 'black'}
             </span>
