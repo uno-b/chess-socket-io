@@ -15,6 +15,7 @@ This project is the frontend for a chess application, designed to work with the 
 - **Next.js**: React framework for server-side rendering and static site generation.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
 - **Socket.io Client**: Real-time communication with the backend.
+- **React-Chess**: [Main code logic](https://github.com/TalhaAwan/react-chess)
 
 ## Setup
 
