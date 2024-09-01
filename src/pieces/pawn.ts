@@ -1,8 +1,6 @@
 import Piece from './piece';
 import { isSameDiagonal } from '../helpers';
 
-type Squares = Array<any>;
-
 const Pawn = (player: number) => {
   const iconUrl =
     player === 1

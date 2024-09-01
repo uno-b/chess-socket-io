@@ -15,12 +15,13 @@ interface BoardProps {
 const Board: React.FC<BoardProps> = ({ squares = [], onClick }) => {
   const renderSquare = (i: number, squareShade: string) => {
     return (
-      <Square
-        key={i}
-        style={(squares && squares[i]?.style) || undefined}
-        shade={squareShade}
-        onClick={() => onClick(i)}
-      />
+      <React.Fragment key={i}>
+        <Square
+          style={(squares && squares[i]?.style) || undefined}
+          shade={squareShade}
+          onClick={() => onClick(i)}
+        />
+      </React.Fragment>
     );
   };
 

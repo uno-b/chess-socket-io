@@ -1,21 +1,37 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Socket } from 'socket.io-client';
+
 import Board from './board';
 import FallenSoldierBlock from './fallen-soldier-block';
-import initialiseChessBoard from '../helpers/board-initialiser';
 import { Piece } from '@/types/common';
 import { Square } from '@/types/common';
 
-export default function Game() {
-  const [squares, setSquares] = useState<Square[]>(initialiseChessBoard());
+type GamePropsType = {
+  socket: Socket;
+  gameId: string;
+  squares: Square[];
+  whiteFallenSoldiers: Piece[];
+  blackFallenSoldiers: Piece[];
+  player: 1 | 2;
+  status: string;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  turn: 1 | 2;
+};
 
-  const [whiteFallenSoldiers, setWhiteFallenSoldiers] = useState<Piece[]>([]);
-  const [blackFallenSoldiers, setBlackFallenSoldiers] = useState<Piece[]>([]);
-  const [player, setPlayer] = useState<number>(1);
+const Game = ({
+  socket,
+  gameId,
+  squares,
+  whiteFallenSoldiers,
+  blackFallenSoldiers,
+  player,
+  status,
+  setStatus,
+  turn,
+}: GamePropsType) => {
   const [sourceSelection, setSourceSelection] = useState<number>(-1);
-  const [status, setStatus] = useState<string>('');
-  const [turn, setTurn] = useState<string>('white');
 
   const handleClick = (i: number) => {
     const squaresCopy = [...squares] as Square[];
@@ -47,87 +63,15 @@ export default function Game() {
 
     if (squaresCopy[i] && squaresCopy[i].player === player) {
       setStatus('Wrong selection. Choose valid source and destination again.');
-      setSourceSelection(-1);
     } else {
-      const newWhiteFallenSoldiers: Piece[] = [];
-      const newBlackFallenSoldiers: Piece[] = [];
-      const isDestEnemyOccupied = Boolean(squaresCopy[i]);
-      const isMovePossible =
-        squaresCopy[sourceSelection]?.isMovePossible(
-          sourceSelection,
-          i,
-          isDestEnemyOccupied
-        ) || false;
-
-      if (isMovePossible) {
-        if (squaresCopy[i] !== null) {
-          if (squaresCopy[i]?.player === 1) {
-            newWhiteFallenSoldiers.push(squaresCopy[i]);
-          } else {
-            newBlackFallenSoldiers.push(squaresCopy[i]);
-          }
-        }
-
-        squaresCopy[i] = squaresCopy[sourceSelection];
-        squaresCopy[sourceSelection] = null;
-
-        const isCheckMe = isCheckForPlayer(squaresCopy, player);
-
-        if (isCheckMe) {
-          setStatus(
-            'Wrong selection. Choose valid source and destination again. Now you have a check!'
-          );
-          setSourceSelection(-1);
-        } else {
-          const newPlayer = player === 1 ? 2 : 1;
-          const newTurn = turn === 'white' ? 'black' : 'white';
-
-          setSquares(squaresCopy);
-          setWhiteFallenSoldiers((prev) => [
-            ...prev,
-            ...newWhiteFallenSoldiers,
-          ]);
-          setBlackFallenSoldiers((prev) => [
-            ...prev,
-            ...newBlackFallenSoldiers,
-          ]);
-          setPlayer(newPlayer);
-          setStatus('');
-          setTurn(newTurn);
-          setSourceSelection(-1);
-        }
-      } else {
-        setStatus(
-          'Wrong selection. Choose valid source and destination again.'
-        );
-        setSourceSelection(-1);
-      }
+      // Emit to backend
+      socket.emit('makeMove', {
+        gameId: gameId,
+        move: { source: sourceSelection, dest: i },
+      });
     }
-  };
 
-  const getKingPosition = (
-    squares: Square[],
-    player: number
-  ): number | null => {
-    return squares.reduce(
-      (acc, curr, i) => acc || (curr?.player === player && curr && i),
-      null
-    );
-  };
-
-  const isCheckForPlayer = (squares: Square[], player: number): boolean => {
-    const opponent = player === 1 ? 2 : 1;
-    const playersKingPosition = getKingPosition(squares, player);
-
-    const canPieceKillPlayersKing = (piece: Piece, i: number) =>
-      piece.isMovePossible(playersKingPosition || -1, i, squares);
-
-    return squares.reduce<boolean>((acc, curr, idx) => {
-      if (curr && curr.player === opponent) {
-        return acc || canPieceKillPlayersKing(curr, idx);
-      }
-      return acc;
-    }, false);
+    setSourceSelection(-1);
   };
 
   return (
@@ -140,7 +84,7 @@ export default function Game() {
           <h3>Turn</h3>
           <div
             className='w-8 h-8 border border-black mb-2'
-            style={{ backgroundColor: turn }}
+            style={{ backgroundColor: turn === 1 ? 'white' : 'black' }}
           ></div>
           <div className='mt-5 min-h-[50px]'>{status}</div>
 
@@ -157,9 +101,12 @@ export default function Game() {
         href='https://github.com/uno-b/codeme-assignment'
         target='_blank'
         rel='noopener noreferrer'
+        className='underline hover-text-gray-300'
       >
         Source Code
       </a>
     </div>
   );
-}
+};
+
+export default Game;

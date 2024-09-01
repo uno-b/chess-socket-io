@@ -3,14 +3,12 @@ import React from 'react';
 type SquarePropsType = {
   shade: string;
   style: React.CSSProperties | undefined;
-  key: number;
   onClick: () => void;
 };
 
 export const Square: React.FC<SquarePropsType> = ({
   shade,
   style,
-  key,
   onClick,
 }) => {
   return (
@@ -21,7 +19,6 @@ export const Square: React.FC<SquarePropsType> = ({
       }
       onClick={onClick}
       style={style}
-      key={key}
     ></button>
   );
 };
