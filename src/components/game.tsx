@@ -34,6 +34,12 @@ const Game = ({
   const [sourceSelection, setSourceSelection] = useState<number>(-1);
 
   const handleClick = (i: number) => {
+    if (player !== turn) {
+      setStatus(`Wait for your opponent's move`);
+
+      return;
+    }
+
     const squaresCopy = [...squares] as Square[];
 
     if (sourceSelection === -1) {
