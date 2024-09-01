@@ -33,15 +33,21 @@ This project is the frontend for a chess application, designed to work with the 
 3. **Install Dependencies**
 
    ```bash
-    npm install
+    yarn install
    ```
 
-4. **Run the Project**
+4. **Add .env file for backend**
+
+   ```bash
+   NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+   ```
+
+5. **Run the Project**
 
    Start the development server:
 
    ```bash
-   npm start
+   yarn dev
    ```
 
 ## Deployment
