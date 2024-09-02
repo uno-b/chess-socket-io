@@ -10,7 +10,7 @@ import { FaMessage } from 'react-icons/fa6';
 import { GameState, Piece, Square } from '@/types/common';
 
 export default function Home() {
-  const [socket] = useState<Socket>(io(process.env.NEXT_PUBLIC_BACKEND_URL!));
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [note, setNote] = useState('');
 
   // Game states
@@ -24,6 +24,11 @@ export default function Home() {
   const [turn, setTurn] = useState<1 | 2 | null>(null);
 
   useEffect(() => {
+    if (socket === null) {
+      setSocket(io(process.env.NEXT_PUBLIC_BACKEND_URL!));
+      console.log('initializing');
+    }
+
     if (!socket) return;
 
     socket.on('connect', () => {
