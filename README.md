@@ -22,13 +22,13 @@ This project is the frontend for a chess application, designed to work with the 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/uno-b/codeme-assignment.git`
+   git clone https://github.com/uno-b/chess-socket-io.git`
    ```
 
 2. **Navigate to the Project Directory**
 
    ```bash
-   cd codeme-assignment
+   cd chess-socket-io
    ```
 
 3. **Install Dependencies**
@@ -53,7 +53,7 @@ This project is the frontend for a chess application, designed to work with the 
 
 ## Deployment
 
-Frontend: https://codeme-assignment.vercel.app/
+Frontend: https://chess-socket-io.vercel.app/
 
 (2 players required to play)
 
