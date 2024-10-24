@@ -1,6 +1,6 @@
 # Chess Frontend
 
-This project is the frontend for a chess application, designed to work with the backend developed as a coding assignment for CodeMe by Unumandakh Bayandelger.
+This project is the frontend for a chess application, designed to work with the backend developed by Unumandakh Bayandelger.
 
 ## Folder Structure
 
